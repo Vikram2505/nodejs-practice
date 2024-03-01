@@ -56,7 +56,8 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
-userSchema.methods.isPasswordCorrect = async function (password) {
+// these are methods provided by mongoose to add functionality
+userSchema.methods.isPasswordCorrect = async function (password) {      
   return await bcrypt.compare(password, this.password);
 };
 
@@ -74,6 +75,7 @@ userSchema.methods.generateAccessToken = function () {
     }
   );
 };
+
 userSchema.methods.generateRefershAccessToken = function () {
   return jwt.sign(
     {
